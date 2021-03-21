@@ -1,0 +1,34 @@
+### Categories
+### Abfrage aller Kategorien sortiert nach Namen
+GET http://localhost:5000/api/categories
+
+### Abfrage Category mit Id
+GET http://localhost:5000/api/categories/4   
+
+### Abfrage Category mit ungültiger Id
+GET http://localhost:5000/api/categories/75 
+
+### Abfrage aller Filme einer Kategorie sortiert nach Namen
+GET http://localhost:5000/api/categories/4/movies
+
+### Abfrage Category mit ungültiger Id
+GET http://localhost:5000/api/categories/75/movies 
+
+### Abfrage der längste Film mit Angabe Titel und Duration (in h min)
+GET http://localhost:5000/api/Movies/longest
+
+### Abfrage die Kategorie mit den meisten Filmen
+GET http://localhost:5000/api/Categories/mostmovies
+
+### Abfrage Jahr mit den meisten Filmen in der Kategorie "Action"
+GET http://localhost:5000/api/Categories/Action/yearwithmostpublications
+
+### Abfrage Jahr mit den meisten Filmen in der Kategorie "Drama"
+GET http://localhost:5000/api/Categories/Drama/yearwithmostpublications
+
+### Abfrage Auswertungsstatistik
+GET http://localhost:5000/api/Categories/statistics
+
+###
+GET http://localhost:5000/api/Categories/averagelengths
+
