@@ -5,12 +5,17 @@ services:
     image: microsoft/mssql-server-linux:2017-latest  
     environment:  
       ACCEPT_EULA: Y  
-      SA_PASSWORD: "Dangerous4TheWorld!"
+      SA_PASSWORD: "D0ckerOnlyClowns!"
     volumes:  
       - mssqlsystem:/var/opt/mssql/ 
       - mssqluser:/var/opt/sqlserver 
     ports:  
-      - '1433:1433'  
+      - '1433:1433'
+    networks:
+      vpcbr:
+        ipv4_adress: 10.5.0.6
 volumes:
   mssqlsystem: 
   mssqluser:
+  
+  

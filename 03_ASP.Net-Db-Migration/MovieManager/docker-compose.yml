@@ -1,0 +1,39 @@
+version: "3.4"
+
+networks:
+  frontend:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+services:
+    db:
+        image: microsoft/mssql-server-linux:2017-latest
+        networks:
+            frontend:
+                ipv4_address: 172.20.0.5
+        ports:
+            - "1433:1433"
+        volumes:  
+          - mssqlsystem:/var/opt/mssql/ 
+          - mssqluser:/var/opt/sqlserver 
+
+    web:
+        build: .
+        ports:
+            - "5000:5000"
+        networks:
+            frontend:
+                ipv4_address: 172.20.0.4
+        links:
+            - db
+        depends_on:
+            - db
+        volumes:
+            - .:/var/app/current
+        environment:
+          DATABASE_USERNAME: sa
+          DATABASE_PASSWORD: D0ckerOnlyClowns!
+
+volumes:
+  mssqlsystem: 
+  mssqluser:
