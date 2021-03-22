@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["MovieManager.Web/MovieManager.Web.csproj", "MovieManager.Web/"]
+COPY ["Movies.csv", "."]
 RUN dotnet restore "MovieManager.Web/MovieManager.Web.csproj"
 COPY . .
 RUN dotnet publish -c Release -o /app/publish

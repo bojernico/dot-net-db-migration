@@ -16,6 +16,9 @@ services:
         volumes:  
           - mssqlsystem:/var/opt/mssql/ 
           - mssqluser:/var/opt/sqlserver 
+        environment:
+            ACCEPT_EULA: "Y"
+            SA_PASSWORD: "D0ckerOnlyClowns!"
 
     web:
         build: .
