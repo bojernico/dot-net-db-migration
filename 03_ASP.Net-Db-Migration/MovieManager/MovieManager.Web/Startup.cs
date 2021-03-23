@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MovieManager.Core.Contracts;
 using MovieManager.Persistence;
+using System;
 
 namespace MovieManager.Web
 {
@@ -29,7 +30,11 @@ namespace MovieManager.Web
         public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             IUnitOfWork uow = new UnitOfWork();
+            Console.WriteLine("Before migrating");
             await uow.MigrateDatabaseAsync();
+            Console.WriteLine("After migrating");
+            await uow.SaveChangesAsync();
+            Console.WriteLine("After saving");
 
             if (env.IsDevelopment())
             {

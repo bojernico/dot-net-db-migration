@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using MovieManager.Core;
 using System.Linq;
+using System;
 
 namespace MovieManager.Persistence.Migrations
 {
@@ -8,6 +9,8 @@ namespace MovieManager.Persistence.Migrations
     {
         protected override async void Up(MigrationBuilder migrationBuilder)
         {
+            Console.WriteLine("Before inserting");
+
             var movies = await ImportController.ReadFromCsvAsync();
             var categoryNames = movies
                 .Select(m => m.Category.CategoryName)
@@ -32,13 +35,9 @@ namespace MovieManager.Persistence.Migrations
                     " (select Id from Categories where CategoryName = '" + movie.Category.CategoryName + "'), " + movie.Year + ", '" + title + "')");
                 migrationBuilder.Sql(sql);
 
-                /*migrationBuilder.InsertData(
-                    table: "Movies",
-                    columns: new[] { "Duration", "CategoryId", "Year", "Title" },
-                    values: new object[] { movie.Duration, movie.Category.Id, movie.Year, movie.Title }
-                    );*/
-
             }
+            Console.WriteLine("After inserting");
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
