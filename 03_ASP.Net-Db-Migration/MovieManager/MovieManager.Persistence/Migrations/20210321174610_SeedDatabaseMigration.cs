@@ -14,7 +14,8 @@ namespace MovieManager.Persistence.Migrations
             var movies = await ImportController.ReadFromCsvAsync();
             var categoryNames = movies
                 .Select(m => m.Category.CategoryName)
-                .Distinct();
+                .Distinct()
+                .ToList();
 
             foreach (var name in categoryNames)
             {

@@ -29,13 +29,6 @@ namespace MovieManager.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            IUnitOfWork uow = new UnitOfWork();
-            Console.WriteLine("Before migrating");
-            await uow.MigrateDatabaseAsync();
-            Console.WriteLine("After migrating");
-            await uow.SaveChangesAsync();
-            Console.WriteLine("After saving");
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -56,6 +49,13 @@ namespace MovieManager.Web
 
             app.UseSwaggerUi3();
 
+
+            IUnitOfWork uow = new UnitOfWork();
+            Console.WriteLine("Before migrating");
+            await uow.MigrateDatabaseAsync();
+            Console.WriteLine("After migrating");
+            await uow.SaveChangesAsync();
+            Console.WriteLine("After saving");
         }
     }
 }
